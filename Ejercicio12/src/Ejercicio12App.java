@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 public class Ejercicio12App {
 
@@ -43,7 +44,16 @@ public class Ejercicio12App {
 		// Preguntando al usuario un número para usarlo como filtro
 		int numeroFiltro = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número para usarlo de filtro (Número Final)"));
 		
-		JOptionPane.showMessageDialog(null, filtarNumeroFinal(array, numeroFiltro));
+		// Obteniendo el resultado del método filtrarNumeroFinal
+		ArrayList<Integer> resultadoFiltro = filtarNumeroFinal(array, numeroFiltro);
+		
+		// Creando el mensaje con los números filtrados
+		arrayMessage = "El resultado del filtrado con el valor => " + numeroFiltro + " es: ";
+		for (Object o:resultadoFiltro) {
+			arrayMessage += o + " ";
+		}
+		
+		JOptionPane.showMessageDialog(null, arrayMessage);
 	
 	}
 	
@@ -66,18 +76,18 @@ public class Ejercicio12App {
 	}
 	
 	// Método para filtrar por el último número con el número que nos ha pasado el usuario.
-	public static String filtarNumeroFinal(int[] array, int arrayFiltro) {
+	public static ArrayList<Integer> filtarNumeroFinal(int[] array, int arrayFiltro) {
 		
-		// Declaramos el mensaje que devolveremos
-		String arrayMessage = "";
+		// Creamos un ArrayList para almacenar los números filtrados
+		ArrayList<Integer> resultado = new ArrayList<>();
 		for (int i = 0; i < array.length; i++) {
 			if(array[i]%10 == arrayFiltro) /* Si el último número del indice es igual al que nos ha pasado el usuario */ {
-				arrayMessage += "(" + i + ") => " + array[i] + " "; // Añadimos el número al mensaje
+				resultado.add(array[i]);
 			}
 		}
 		
-		// Devolvemos el mensaje
-		return arrayMessage;
+		// Devolvemos el nuevo array
+		return resultado;
 		
 	}
 	
